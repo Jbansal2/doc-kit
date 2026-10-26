@@ -96,19 +96,25 @@ export default function createParallelWorker(
         { generator: name, chunks: chunks.length, chunkSize, threads }
       );
 
-      const runInOneGo = threads <= 1 || items.length <= 2;
+      // On this thread, one chunk at a time, so their work isn't all held at
+      // once, and on a copy, as a worker gets, which the chunk can change
+      if (threads <= 1 || items.length <= 2) {
+        for (const indices of chunks) {
+          const input = structuredClone(indices.map(i => items[i]));
+
+          yield await generator.processChunk(
+            input,
+            input.keys().toArray(),
+            extra
+          );
+        }
+
+        return;
+      }
 
       // Submit all tasks to Piscina - each promise resolves to itself for removal
       const pending = new Set(
         chunks.map(indices => {
-          if (runInOneGo) {
-            const promise = generator
-              .processChunk(items, indices, extra)
-              .then(result => ({ promise, result }));
-
-            return promise;
-          }
-
           const promise = pool
             .run(
               createTask(items, indices, extra, configuration, specifier, name)
