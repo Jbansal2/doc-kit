@@ -1,5 +1,12 @@
 # @node-core/doc-kit-legacy
 
+## 1.1.2
+
+### Patch Changes
+
+- Updated dependencies [[`0321911`](https://github.com/nodejs/doc-kit/commit/03219116c78e7f4a721b4e39bc71ba54cb6f0ba8)]:
+  - @doc-kit/core@1.3.1
+
 ## 1.1.1
 
 ### Patch Changes

@@ -1,5 +1,13 @@
 # @doc-kit/generator-react
 
+## 0.5.1
+
+### Patch Changes
+
+- [#1178](https://github.com/nodejs/doc-kit/pull/1178) [`0321911`](https://github.com/nodejs/doc-kit/commit/03219116c78e7f4a721b4e39bc71ba54cb6f0ba8) Thanks [@ovflowd](https://github.com/ovflowd)! - Install fewer packages: `@doc-kit/core` updates `cosmiconfig` to v10 (TypeScript config files now load through Node's type stripping) and no longer installs `dedent`, and `@doc-kit/generator-react` estimates reading time with `Intl.Segmenter` instead of the `reading-time` package and updates `@node-core/ui-components` to 1.8.1, which no longer installs `@vcarl/remark-headings`.
+- Updated dependencies [[`0321911`](https://github.com/nodejs/doc-kit/commit/03219116c78e7f4a721b4e39bc71ba54cb6f0ba8)]:
+  - @doc-kit/core@1.3.1
+
 ## 0.5.0
 
 ### Minor Changes
